@@ -5,6 +5,13 @@ This is a bot that we created in order to better manage our submarines with a te
 
 [TODO: We need to come up with a more stylish name for the bot! Or not, I guess.]
 
+## Commands
+| Command      | Description |
+| ------------ | ----------- |
+| `/info` | Displays information about the how to use the bot, including helpful links and resources. |
+| `/dispatch` `/send` | Sets a timer for when a submersible will return, pinging `@everyone` who can access the channel. Can set an optional note to keep track of what the timer is for. |
+| `/timers` | Displays all in-progress timers. |
+
 ## Planned Features
 ### Minimum Viable Product
 - Set timer to ping (and/or DM) in Discord when the timer runs out (i.e. when the submarine voyage is over)
