@@ -4,9 +4,8 @@ import {
   InteractionType,
   InteractionResponseType,
   MessageComponentTypes,
-  ButtonStyleTypes,
 } from 'discord-interactions';
-import { VerifyDiscordRequest } from './utils.js';
+import { VerifyDiscordRequest } from '../utils.js';
 
 // Create and configure express app
 const app = express();
@@ -26,17 +25,28 @@ app.post('/interactions', function (req, res) {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           content: 'A message with a button',
-          // Buttons are inside of action rows
+          // Selects are inside of action rows
           components: [
             {
               type: MessageComponentTypes.ACTION_ROW,
               components: [
                 {
-                  type: MessageComponentTypes.BUTTON,
-                  // Value for your app to identify the button
-                  custom_id: 'my_button',
-                  label: 'Click',
-                  style: ButtonStyleTypes.PRIMARY,
+                  type: MessageComponentTypes.STRING_SELECT,
+                  // Value for your app to identify the select menu interactions
+                  custom_id: 'my_select',
+                  // Select options - see https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
+                  options: [
+                    {
+                      label: 'Option #1',
+                      value: 'option_1',
+                      description: 'The very first option',
+                    },
+                    {
+                      label: 'Second option',
+                      value: 'option_2',
+                      description: 'The second AND last option',
+                    },
+                  ],
                 },
               ],
             },
@@ -52,14 +62,18 @@ app.post('/interactions', function (req, res) {
   if (type === InteractionType.MESSAGE_COMPONENT) {
     // custom_id set in payload when sending message component
     const componentId = data.custom_id;
-    // user who clicked button
-    const userId = req.body.member.user.id;
 
-    if (componentId === 'my_button') {
+    if (componentId === 'my_select') {
       console.log(req.body);
+
+      // Get selected option from payload
+      const selectedOption = data.values[0];
+      const userId = req.body.member.user.id;
+
+      // Send results
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: { content: `<@${userId}> clicked the button` },
+        data: { content: `<@${userId}> selected ${selectedOption}` },
       });
     }
   }
