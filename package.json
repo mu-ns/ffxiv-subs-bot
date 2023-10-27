@@ -1,26 +1,23 @@
 {
-  "name": "getting-started",
+  "name": "ffxiv-subs-bot",
   "version": "1.0.0",
-  "description": "Discord example app",
-  "main": "app.js",
-  "type": "module",
-  "engines": {
-    "node": "16.x"
-  },
+  "description": "This is a bot that we created in order to better manage our submarines with a team of people. The original goal is to ping a specific person (or group of people) when submarines are ready to be resent on a voyage.",
+  "main": "index.js",
   "scripts": {
-    "start": "node bot/app.js",
-    "register": "node bot/commands.js",
-    "dev": "nodemon bot/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Shay DeWael",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mu-ns/ffxiv-subs-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mu-ns/ffxiv-subs-bot/issues"
+  },
+  "homepage": "https://github.com/mu-ns/ffxiv-subs-bot#readme",
   "dependencies": {
-    "discord-interactions": "^3.2.0",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "node-fetch": "^3.3.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1"
   }
 }
