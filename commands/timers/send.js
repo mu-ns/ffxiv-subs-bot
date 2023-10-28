@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const dataManager = require('../../data/dataManager.js')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -43,8 +44,11 @@ module.exports = {
     else
       reply = `${note}: Finishes <t:${unix_end_time}:F>, which is <t:${unix_end_time}:R>`;
 
+    // save the timer to storage
+    dataManager.addTimer(unix_end_time,note)
+    
     // send the required messages
     // await channel.send("@everyone"); // this is how to ping everyone
-    await interaction.reply({ content: reply, ephemeral: false }); // set ephemeral to true once /timers is implemented
+    await interaction.reply({ content: reply, ephemeral: true });
   },
 };

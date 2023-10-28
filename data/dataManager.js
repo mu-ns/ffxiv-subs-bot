@@ -3,6 +3,8 @@ const path = require('path');
 const STORAGE_PATH = process.env.STORAGE_PATH;
 const TIMERS_PATH = path.join(STORAGE_PATH, "timers.json")
 
+module.exports = { getTimers, initializeStorage, addTimer } 
+
 
 function initializeStorage() {
     // Check whether the storage folder exists
@@ -12,23 +14,11 @@ function initializeStorage() {
     }
 
     // We have now ensured the storage folder exists, we can add individual storage files
-    // TODO Remove the dummy timer when actual timers can be created via the /send command (replace with empty array)
-    const dummyTimerObject = {
-        "timers": [
-            {
-                "unix_end_time": "1698532200",
-                "note": "Crapaud"
-            },
-            {
-                "unix_end_time": "1698532200",
-                "note": "Rainette"
-            }
-        ]
-    }
-    dummyTimer = JSON.stringify(dummyTimerObject)
+    const emptyTimersArray = {timers:[]}
+    const emptyTimersArrayString = JSON.stringify(emptyTimersArray)
 
     if (!fs.existsSync(TIMERS_PATH)) {
-        fs.writeFileSync(TIMERS_PATH, dummyTimer, "UTF8")
+        fs.writeFileSync(TIMERS_PATH, emptyTimersArrayString, "UTF8")
     }
 }
 
@@ -38,4 +28,10 @@ function getTimers() {
     return JSON.parse(dataString);
 }
 
-module.exports = { getTimers, initializeStorage } 
+function addTimer(unix_end_time, note) {
+    console.log(`Adding timer to storage in ${TIMERS_PATH} with parameters unix_end_time=${unix_end_time} and note=${note}.`)
+    var timersObject = getTimers()
+    const newTimer = { "unix_end_time": unix_end_time, "note": note }
+    timersObject.timers.push(newTimer)
+    fs.writeFileSync(TIMERS_PATH, JSON.stringify(timersObject), "UTF8")
+}
