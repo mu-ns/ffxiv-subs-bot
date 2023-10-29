@@ -7,6 +7,11 @@ const path = require("node:path");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+// Initialize the storage system
+const dataManager = require('./data/dataManager.js')
+dataManager.initializeStorage()
+
+// Retrieve commands from the command folder
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
@@ -29,10 +34,12 @@ for (const folder of commandFolders) {
   }
 }
 
+// Log that the bot is ready for use
 client.once(Events.ClientReady, () => {
   console.log("Ready!");
 });
 
+// Start listening to events
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
