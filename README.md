@@ -39,14 +39,13 @@ When the bot is ready to be "shipped," all relevant information from these pages
 ### Prerequisites
 
 - [NodeJS](https://nodejs.org/en/download): Javascript framework.
-- [`ngrok`](https://ngrok.com/): Let you open a port to receive requests. Best installed with [homebrew](https://brew.sh/).
 
 ### Setup project
 
 Install the necessary dependencies by running the following command at the root of the project:
 
 ```
-`npm install`
+npm install
 ```
 
 To setup the bot parameters, you need to create a `.env` file containing the following information at the root of the project:
@@ -55,51 +54,22 @@ To setup the bot parameters, you need to create a `.env` file containing the fol
 APP_ID=<YOUR APP ID>
 DISCORD_TOKEN=<YOUR DISCORD TOKEN>
 PUBLIC_KEY=<YOUR PUBLIC KEY>
-PORT=<THE PORT YOU WANT TO USE> [This is optional, the default port is 3000]
 ```
 
 All of this information can be found [in your discord application](https://discord.com/developers/applications/).
 
 ### Install slash commands
 
-The bot commands are setup in `command.js`. The `register` command, configured in `package.json`, installs slash commands:
+The bot commands are setup in `deploy-commands.js`:
 
 ```
-npm run register
+node deploy-commands.js
 ```
 
-### Run the app
+### Run the bot
 
-The app is run by using the command:
-
-```
-node bot/app.js
-```
-
-You also need to create an endpoint where discord can send requests (interactions, in particular). This is achieved with `ngrok`:
+You can run the bot by using the command:
 
 ```
-ngrok http <PORT>
+node .
 ```
-
-By default, the app uses port `3000`.
-
-It should display something like this:
-
-```
-
-Tunnel Status                 online
-Version                       2.0/2.0
-Web Interface                 http://127.0.0.1:4040
-Forwarding                    http://1234-someurl.ngrok.io -> localhost:3000
-Forwarding                    https://1234-someurl.ngrok.io -> localhost:3000
-
-Connections                  ttl     opn     rt1     rt5     p50     p90
-                              0       0       0.00    0.00    0.00    0.00
-```
-
-You need to copy the forwarding address that starts with `https`. In your [app's settings](https://discord.com/developers/applications), on the *General Information* tab, paste the URL under *Interactions endpoint URL*, **and append `/interactions` to it**. In the above example, the URL becomes `https://1234-someurl.ngrok.io/interactions`.
-
-If you forget the `/interactions`, discord won't let you save your changes.
-
-Save your changes -- your app is now running and ready to be used!
