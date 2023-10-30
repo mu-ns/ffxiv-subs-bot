@@ -15,7 +15,7 @@ This is a bot that we created in order to better manage our free company's subma
 - Can set a timer to ping (and/or DM) in Discord when the timer runs out (i.e. when the submarine voyage is over)
   - Implemented using native slash commands in Discord
   - For this release, one can just set unlimited timers and maybe a note to keep track of what that timer is for 
-- TODO: Basic "permission system" so only timers set in that channel can be viewed
+- Basic "permission system" so only timers set in that channel can be viewed
 
 ### Planned Features
 - Plan how to store submarine data in a scalable fashion
