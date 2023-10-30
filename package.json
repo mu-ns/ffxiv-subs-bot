@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mu-ns/ffxiv-subs-bot#readme",
   "dependencies": {
+    "cron": "^3.1.5",
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1"
   }

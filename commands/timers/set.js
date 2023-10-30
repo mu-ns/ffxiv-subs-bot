@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require("discord.js");
-const dataManager = require('../../data/dataManager.js')
+const dataManager = require("../../data/dataManager.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("send")
+    .setName("set")
     .setDescription("Sets a timer for when a submersible will return.")
     .addIntegerOption((option) =>
       option
@@ -45,10 +45,9 @@ module.exports = {
       reply = `${note}: Finishes <t:${unix_end_time}:F>, which is <t:${unix_end_time}:R>`;
 
     // save the timer to storage
-    dataManager.addTimer(unix_end_time,note)
-    
+    dataManager.addTimer(unix_end_time, note, interaction.channel.id);
+
     // send the required messages
-    // await channel.send("@everyone"); // this is how to ping everyone
     await interaction.reply({ content: reply, ephemeral: true });
   },
 };
