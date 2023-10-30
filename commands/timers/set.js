@@ -3,7 +3,7 @@ const dataManager = require("../../data/dataManager.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("send")
+    .setName("set")
     .setDescription("Sets a timer for when a submersible will return.")
     .addIntegerOption((option) =>
       option

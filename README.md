@@ -9,7 +9,7 @@ This is a bot that we created in order to better manage our submarines with a te
 | Command      | Description |
 | ------------ | ----------- |
 | `/info` | Displays information about the how to use the bot, including helpful links and resources. |
-| `/dispatch` `/send` | Sets a timer for when a submersible will return, pinging `@everyone` who can access the channel. Can set an optional note to keep track of what the timer is for. |
+| `/set` | Sets a timer for when a submersible will return, pinging `@everyone` who can access the channel. Can set an optional note to keep track of what the timer is for. |
 | `/timers` | Displays all in-progress timers. |
 
 ## Planned Features
