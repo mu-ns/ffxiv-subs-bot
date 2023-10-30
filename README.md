@@ -54,6 +54,7 @@ To setup the bot parameters, you need to create a `.env` file containing the fol
 APP_ID=<YOUR APP ID>
 DISCORD_TOKEN=<YOUR DISCORD TOKEN>
 PUBLIC_KEY=<YOUR PUBLIC KEY>
+STORAGE_PATH=<PATH TO STORE TIMERS DATA>
 ```
 
 All of this information can be found [in your discord application](https://discord.com/developers/applications/).
